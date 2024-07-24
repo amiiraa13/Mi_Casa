@@ -43,6 +43,9 @@ const foyerSchema = new mongoose.Schema({
         [{ type: mongoose.Schema.Types.ObjectId, ref: 'tdl' }],
     recettes: 
         [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recettes' }],
+    pieces: 
+        [{ type: mongoose.Schema.Types.ObjectId, ref: 'pieces' }],
+
 })
 
 

@@ -1,13 +1,32 @@
 {% extends "../base.twig" %}
 
-{% block style %}
-   
-{% endblock %}
+{% block style %}{% endblock %}
 
 
 {% block main %}
+	<section>
+		<h2>Ménage</h2>
 
+		<form action="/menage" method="POST">
+			<div class="formulaire">
+				<input type="text" id="nom" name="nom" placeholder="Nom de la piece" required>
 
+				<button type="submit" id="plus">
+					<img src="/assets/img/ajout.png" alt="plus">
+				</button>
+			</div>
+		</form>
+		<ul>
+			{% for piece in foyer.pieces %}
+				<li>{{ piece.nom }}</li>
+				<!-- Affiche la tâche -->
+
+			{% else %}
+				<li>Aucune tâche trouvée</li>
+				<!-- Message si aucune tâche n'est trouvée -->
+			{% endfor %}
+		</ul>
+	</section>
 
 
 {% endblock %}

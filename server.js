@@ -5,6 +5,7 @@ const foyerRouter = require("./routes/foyerRouter")
 const membreRouter = require("./routes/membreRouter")
 const coursesRouter = require("./routes/coursesRouter")
 const tdlRouter = require("./routes/tdlRouter")
+const pieceRouter = require("./routes/pieceRouter")
 
 require('dotenv').config()
 
@@ -23,6 +24,7 @@ app.use(foyerRouter)
 app.use(membreRouter)
 app.use(coursesRouter)
 app.use(tdlRouter)
+app.use(pieceRouter)
 
 
 
