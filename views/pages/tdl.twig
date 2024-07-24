@@ -22,6 +22,11 @@
     <ul id="tache">
         {% for tache in foyer.tdl %}
             <li>{{ tache.tache }}</li> <!-- Affiche la tâche -->
+            <form action="/delete_tache/{{ tache._id }}" method="POST">
+                    <button type="submit">
+                        <img src="/assets/img/poubelle.png" alt="poubelle" >
+                    </button>
+                </form>
         {% else %}
             <li>Aucune tâche trouvée</li> <!-- Message si aucune tâche n'est trouvée -->
         {% endfor %}

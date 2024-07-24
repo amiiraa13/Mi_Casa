@@ -102,12 +102,6 @@ foyerRouter.get("/foyerdelete/:foyerid", authGuard, async (req, res) => {
     }
 });
 
-// Route pour afficher une page de liste de tâches
-foyerRouter.get('/tdl', (req, res) => {
-    res.render('pages/tdl.twig',{
-        foyer: req.session.foyer, // Rend la vue "tdl.twig" avec les données du foyer
-    });
-});
 
 // Export du routeur
 module.exports = foyerRouter

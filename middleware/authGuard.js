@@ -6,10 +6,10 @@ const authGuard = async (req, res, next) => {
     try {
         // Vérifie si la session contient des informations sur le foyer
         if (req.session.foyer) {
-            console.log('Session trouvée:', req.session.foyer);
+            
             // Recherche le foyer dans la base de données à partir de l'ID stocké dans la session
             const foyerFinded = await foyerModel.findOne({ _id: req.session.foyer._id });
-            console.log('Foyer trouvé:', foyerFinded);
+            
             // Si le foyer est trouvé, passe au middleware suivant
             if (foyerFinded) {
                 next();

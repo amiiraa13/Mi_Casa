@@ -25,7 +25,7 @@ app.use(coursesRouter)
 app.use(tdlRouter)
 
 
-console.log("ser©ver");
+
 
 
 app.listen(process.env.PORT, (err)=>{
@@ -37,3 +37,8 @@ app.listen(process.env.PORT, (err)=>{
 })
 
 mongoose.connect(process.env.MONGO)
+
+
+app.get("*",(req,res)=>{
+    res.redirect("/dashboard")
+})
