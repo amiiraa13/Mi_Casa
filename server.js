@@ -25,7 +25,7 @@ app.use(coursesRouter)
 app.use(tdlRouter)
 
 
-
+console.log("ser©ver");
 
 
 app.listen(process.env.PORT, (err)=>{
