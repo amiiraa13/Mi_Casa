@@ -1,0 +1,62 @@
+{% extends "../base.twig" %}
+
+{% block style %}
+<!-- Lien vers la feuille de style CSS spécifique à cette page -->
+<link rel="stylesheet" href="/assets/css/liste_courses.css">
+{% endblock %}
+
+{% block main %}
+
+<section>
+    <div class="container">
+        <!-- Titre de la page -->
+        <h2>Liste de courses</h2>
+    </div>
+    <div id="formu">
+        <!-- Formulaire pour ajouter un nouveau produit à la liste de courses -->
+        <form action="/liste_courses" method="POST">
+            <div class="formulaire">
+                <input type="text" id="produit" name="produit" placeholder="Produit" required>
+            </div>
+            <button class="bouton" type="submit">✅ </button>
+        </form>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Div supplémentaire pour une éventuelle future utilisation -->
+</div>
+
+<section id="container">
+    <!-- Liste des produits dans le foyer -->
+    <ul id="pro">
+        {% for product in foyer.liste_Courses %}
+        <!-- Boucle pour afficher chaque produit dans la liste des courses -->
+        <li>
+            <!-- Affichage du produit avec une ligne barrée s'il est sélectionné -->
+            <span style="text-decoration: {% if product.produit_select %}line-through{% endif %};">
+                {{ product.produit }}
+            </span>
+            <div id="bout">
+                <!-- Formulaire pour valider (cocher) un produit -->
+                <form action="/validate_course/{{ product._id }}" method="POST" >
+                    <button type="submit">
+                        ✅
+                    </button>
+                </form>
+                <!-- Formulaire pour supprimer un produit -->
+                <form action="/delete_course/{{ product._id }}" method="POST">
+                    <button type="submit">
+                        <img src="/assets/img/poubelle.png" alt="poubelle" >
+                    </button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Inclusion du fichier JavaScript pour gérer les interactions avec la liste de courses -->
+<script src="../assets/js/liste_courses.js"></script>
+
+{% endblock %}

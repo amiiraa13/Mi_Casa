@@ -1,0 +1,104 @@
+{% extends "../base.twig" %}
+
+{% block style %}
+  <!-- Lien vers la feuille de style CSS spécifique à cette page -->
+  <link rel="stylesheet" href="/assets/css/foyer.css">
+{% endblock %}
+
+{% block main %}
+  <section>
+    {% if foyer %}
+      <!-- Affichage de la section des membres si le foyer existe -->
+      <article id="membres">
+        {% if membres and membres|length > 0 %}
+          <!-- Vérifie s'il y a des membres dans le foyer -->
+          {% for membre in membres %}
+            <!-- Boucle pour afficher chaque membre -->
+            {% if wanted and membre.id == wanted.id %}
+              <!-- Si le membre actuel est celui en cours de modification, afficher le formulaire de mise à jour -->
+              <form method="post" action="/membreupdate/{{ wanted.id }}">
+                <div>
+                  <label for="name">Nom</label>
+                  <input id="name" type="text" name="name" value="{{ wanted.name }}">
+                  {% if error %}
+                    <!-- Affichage des erreurs éventuelles -->
+                    <p>{{ error }}</p>
+                  {% endif %}
+                </div>
+                <div id="modif">
+                  <label for="role">Rôle</label>
+                  <input id="role" type="text" name="role" value="{{ wanted.role }}">
+                  {% if error %}
+                    <!-- Affichage des erreurs éventuelles -->
+                    <p>{{ error }}</p>
+                  {% endif %}
+                </div>
+                <div>
+                  <button type="submit">✅</button>
+                </div>
+              </form>
+            {% else %}
+              <!-- Affichage des informations sur le membre -->
+              <div id="mem">
+                <p>{{ membre.name }}</p>
+                <p>Rôle : {{ membre.role }}</p>
+                <div id="boutn">
+                  <!-- Lien pour mettre à jour le membre -->
+                  <a id="upd" href="/membreupdate/{{ membre.id }}">🖊️</a>
+                  <!-- Lien pour supprimer le membre -->
+                  <a id="suppri" href="/membredelete/{{ membre.id }}">🗑️</a>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <!-- Message affiché s'il n'y a aucun membre dans le foyer -->
+          <p>Aucun membre trouvé dans ce foyer.</p>
+        {% endif %}
+      {% else %}
+        <!-- Message affiché si le foyer n'existe pas -->
+        <p>Entrez un nouveau membre</p>
+      {% endif %}
+      </article>
+      <div id="bas">
+        <!-- Bouton pour ajouter un nouveau membre, qui ouvre une modal -->
+        <button id="newMemberBtn" onclick="openModal()"> + </button>
+      </div>
+  </section>
+
+  <!-- Overlay et modal pour ajouter un nouveau membre -->
+  <div class="overlay" onclick="closeModal()"></div>
+  <div class="modal">
+    <div class="modal-close" onclick="closeModal()">&times;</div>
+    <form method="post" action="/foyer">
+      <h2>Ajouter un membre</h2>
+      <div>
+        <label for="name">Nom</label>
+        <input id="name" type="text" name="name">
+        {% if error %}
+          <!-- Affichage des erreurs éventuelles -->
+          <p>{{ error }}</p>
+        {% endif %}
+      </div>
+      <div>
+        <label for="role">Rôle</label>
+        <input id="role" type="text" name="role">
+        {% if error %}
+          <!-- Affichage des erreurs éventuelles -->
+          <p>{{ error }}</p>
+        {% endif %}
+      </div>
+      <div>
+        <button id="btnAj" type="submit">Envoyer</button>
+      </div>
+    </form>
+  </div>
+  
+  <!-- Lien pour supprimer le foyer -->
+  <div id="supp">
+    <a id="del" href="/foyerdelete/{{ foyer.id }}">Supprimer le foyer</a>
+  </div>
+  
+  <!-- Inclusion du fichier JavaScript pour gérer les interactions avec la modal -->
+  <script src="../assets/js/foyer.js"></script>
+{% endblock %}

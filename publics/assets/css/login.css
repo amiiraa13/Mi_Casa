@@ -1,0 +1,124 @@
+@font-face {
+  font-family: police;
+  src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
+}
+
+body{
+  background-image: url(../img/Capture\ d’écran\ 2024-07-07\ à\ 14.08.03.png);
+  /* background-position: 50% 12%; */
+  background-repeat: no-repeat;
+  /* background-size: 100%; */
+  font-family: police;
+  font-size: 24px;
+  background-size: cover;
+}
+
+h1{
+  color: #ffffff;
+  font-size: 128px;
+  margin-top: 0px;
+  margin-left: 90px;
+}
+section{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 55px;
+}
+#co{
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+#co, #insc {
+  background-color: rgb(120 184 90);
+  border-radius: 48px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+#modif{
+color: #ffffff;
+}
+h2 {
+  color: #3a5931; /* couleur de texte vert foncé */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"], input[type="password"] {
+  border: none;
+  border-radius: 17px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+button {
+  background-color: #ffffff; /* arrière-plan vert foncé */
+  border: none;
+  border-radius: 5px;
+  color: rgb(120 184 90);
+  font-size: 1em;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4b7040; /* vert légèrement plus clair au survol */
+}
+
+
+@media (min-width: 1024px) and (max-width: 1366px) {
+  body {
+  background-size: cover;
+  background-position: center 10%;
+  }
+  #co, #insc {
+    width: 35%;
+    padding: 15px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  h1 {
+    font-size: 64px;
+    margin-left: 20px;
+  }
+
+  #co, #insc {
+    width: 45%;
+    padding: 15px;
+  }
+
+  body {
+    background-position: center 50%;
+    background-size: cover;
+  }
+}
+
+/* Vue mobile en mode portrait */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 32px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #co, #insc {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+
+  body {
+    background-position: center 10%;
+    background-size: cover;
+  }
+}

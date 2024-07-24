@@ -1,0 +1,17 @@
+{% block style %}
+	<link rel="stylesheet" href="./assets/css/header.css">
+{% endblock %}
+
+<header>
+{% if foyer %}
+    <li>
+		<a href="/logout">Déconnexion</a>
+	</li>
+    <li>
+		<a href="/dashboard">Mi Casa</a>
+	</li>
+    <li>
+		<a href="/foyer">{{foyer.name}}</a>
+	</li>
+    {% endif %}
+</header>

@@ -1,0 +1,157 @@
+@font-face {
+    font-family: police;
+    src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
+  }
+
+header{
+    display: flex;
+    background-color: rgb(120 184 90);
+    justify-content: space-between;
+    margin: 0;
+    height: 110%;
+}
+li a {
+    color:#fffefe;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 20px;
+   
+    
+    
+}
+
+li{
+    list-style: none;
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: police;
+}
+body{
+    background-color: #baeba2;
+    font-size: 20px;
+}
+p{
+    margin: 10px;
+}
+#bas{
+    display: flex;
+    justify-content: center;
+
+}
+#newMemberBtn{
+    background-color: rgb(120 184 90);
+    padding: 10px;
+    border: none;
+    border-radius: 17px;
+    font-size: 48;
+    color: #fffefe;
+    font-weight:bold;
+    margin: 100px;
+    
+}
+#newMemberBtn:hover{
+cursor: pointer;
+}
+#name, #role{
+    border-radius: 35px;
+    border: none;
+    padding: 5px;
+    
+}
+button{
+    background: none;
+    border: none;
+    font-size: 22px;
+
+}
+#del{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #fffefe;
+    background-color: #f07070;
+    width: 200px;
+    border-radius: 17px;
+    padding: 10px;
+}
+#supp{
+    display: flex;
+    justify-content: center;
+    
+}
+#membres{
+display: flex;
+justify-content: space-around;
+margin-top: 10%;
+
+}
+#mem{
+    background-color:rgb(120 184 90) ;
+    padding: 10px;
+    color: #fffefe;
+    border-radius: 17px;
+}
+h2{
+    margin-bottom: 50px;
+    margin-top: 20px;
+    font-size: 30px;
+}
+label{
+    font-size: 25px;
+}
+#btnAj{
+    background-color: rgb(120 184 90);
+    padding: 10px;
+    border: none;
+    border-radius: 17px;
+   
+    color: #fffefe;
+    font-weight:bold;
+    margin: 30px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    
+  }
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 300px;
+    display: none;
+    
+  }
+  .modal-open {
+    display: block;
+    background-color: white;
+    border-radius: 50px;
+    color: rgb(120 184 90);
+    text-align: center;
+  
+    font-size: 30px;
+   
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }

@@ -1,0 +1,30 @@
+{% extends "../base.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/css/tdl.css">
+{% endblock %}
+
+{% block main %}
+<section>
+    <div class="container">
+        <h2>Liste de tâches</h2>
+    </div>
+    <div id="formu">
+        <form action="/tdl" method="POST">
+            <div class="formulaire">
+                <input type="text" id="tache" name="tache" placeholder="Tâche" required>
+            </div>
+            <button class="bouton" type="submit">✅</button>
+        </form>
+    </div>
+</section>
+<section id="tacheContainer">
+    <ul id="tache">
+        {% for tache in foyer.tdl %}
+            <li>{{ tache.tache }}</li> <!-- Affiche la tâche -->
+        {% else %}
+            <li>Aucune tâche trouvée</li> <!-- Message si aucune tâche n'est trouvée -->
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
