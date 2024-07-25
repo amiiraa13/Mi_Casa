@@ -6,27 +6,31 @@
 
 {% block main %}
 <section>
-    <div class="container">
+    <div class="titre">
         <h2>Liste de tâches</h2>
     </div>
     <div id="formu">
         <form action="/tdl" method="POST">
             <div class="formulaire">
-                <input type="text" id="tache" name="tache" placeholder="Tâche" required>
+                <input type="text" id="form" name="tache" placeholder="Tâche" required>
             </div>
-            <button class="bouton" type="submit">✅</button>
+            <button type="submit" id="plus">
+                        <img src="/assets/img/ajout.png" alt="plus" >
+                    </button>
         </form>
     </div>
 </section>
 <section id="tacheContainer">
     <ul id="tache">
         {% for tache in foyer.tdl %}
+        <div id="container">
             <li>{{ tache.tache }}</li> <!-- Affiche la tâche -->
             <form action="/delete_tache/{{ tache._id }}" method="POST">
                     <button type="submit">
                         <img src="/assets/img/poubelle.png" alt="poubelle" >
                     </button>
                 </form>
+                </div>
         {% else %}
             <li>Aucune tâche trouvée</li> <!-- Message si aucune tâche n'est trouvée -->
         {% endfor %}

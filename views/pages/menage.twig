@@ -1,32 +1,43 @@
 {% extends "../base.twig" %}
 
-{% block style %}{% endblock %}
-
+{% block style %}
+<link rel="stylesheet" href="/assets/css/menage.css">
+{% endblock %}
 
 {% block main %}
-	<section>
-		<h2>Ménage</h2>
+<section>
+    <div class="container">
+        <h2>Ménage</h2>
+    </div>
+    <div id="formu">
+        <form action="/menage" method="POST">
+            <div class="formulaire">
+                <input type="text" id="nom" name="nom" placeholder="Nom de la piece" required>
+                <button type="submit" id="plus">
+                    <img src="/assets/img/ajout.png" alt="plus">
+                </button>
+            </div>
+        </form>
+    </div>
+    <ul>
+        {% for piece in foyer.pieces %}
+            <li>
+                <a href="#" class="open-modal" data-piece="{{ piece.nom }}">{{ piece.nom }}</a>
+            </li>
+        {% else %}
+            <li>Aucune tâche trouvée</li>
+        {% endfor %}
+    </ul>
+</section>
 
-		<form action="/menage" method="POST">
-			<div class="formulaire">
-				<input type="text" id="nom" name="nom" placeholder="Nom de la piece" required>
+<!-- Modal structure -->
+<div class="overlay" onclick="closeModal()"></div>
+<div class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <h3 id="modal-title"></h3>
+    </div>
+</div>
 
-				<button type="submit" id="plus">
-					<img src="/assets/img/ajout.png" alt="plus">
-				</button>
-			</div>
-		</form>
-		<ul>
-			{% for piece in foyer.pieces %}
-				<li>{{ piece.nom }}</li>
-				<!-- Affiche la tâche -->
-
-			{% else %}
-				<li>Aucune tâche trouvée</li>
-				<!-- Message si aucune tâche n'est trouvée -->
-			{% endfor %}
-		</ul>
-	</section>
-
-
+<script src="/assets/js/menage.js"></script>
 {% endblock %}

@@ -1,0 +1,91 @@
+h2{
+    text-align: center;
+    background-color: #fffefe;
+    color: rgb(120 184 90);
+    width: 200px;
+    border-radius: 17px;
+    margin: 20px;
+    padding: 10px;
+}
+
+body{
+    background-color: #baeba2;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+.formulaire{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+#formu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 30px;
+}
+#plus{
+    position: absolute;
+    right: 1px;
+    margin-top: 1px;
+}
+#nom{
+    border-radius: 17px;
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;
+    border: none;
+    width: 260px;
+}
+button{
+   
+    border: none;
+    background: none;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+.modal-open {
+    display: block;
+    height: 449px;
+    width: 600px;
+
+}
+
+.modal-content {
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+h3{
+    text-align: center;
+}

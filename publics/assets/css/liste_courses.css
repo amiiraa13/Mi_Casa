@@ -7,6 +7,8 @@
     margin: 20px;
 }
 
+
+
 #pro li {
     background-color: #fffefe;
     border-radius: 17px;
@@ -19,7 +21,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color:rgb(120 184 90)
+    color:rgb(120 184 90);
+    margin-top: 58px;
     
 }
 #bout{
@@ -71,6 +74,7 @@ h2 {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin: 30px;
 }
 
 .bouton {
@@ -103,4 +107,7 @@ form{
 
 .flex {
     display: flex;
+}
+#tacheContainer{
+    margin-top: 58px;
 }
