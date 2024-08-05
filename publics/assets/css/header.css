@@ -21,3 +21,19 @@ li{
     padding: 0;
     
 }
+
+@media (max-width: 455px ) {
+    
+
+    li a {
+     font-size: 27px;
+    }
+ }
+
+ @media ( min-width:370px) {
+    
+
+    li a {
+     font-size: 21px;
+    }
+ }

@@ -9,8 +9,8 @@ const pieceSchema = new mongoose.Schema({
         required: [true, "Le nom est requis"],
         
     },
-    tache_menage: 
-        [{ type: mongoose.Schema.Types.ObjectId, ref: 'tache_menage' }],
+    menages: 
+        [{ type: mongoose.Schema.Types.ObjectId, ref: 'menages' }],
     
     
 })

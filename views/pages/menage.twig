@@ -1,43 +1,104 @@
 {% extends "../base.twig" %}
 
 {% block style %}
-<link rel="stylesheet" href="/assets/css/menage.css">
+	<link rel="stylesheet" href="/assets/css/menage.css">
 {% endblock %}
 
 {% block main %}
-<section>
-    <div class="container">
-        <h2>Ménage</h2>
-    </div>
-    <div id="formu">
-        <form action="/menage" method="POST">
-            <div class="formulaire">
-                <input type="text" id="nom" name="nom" placeholder="Nom de la piece" required>
-                <button type="submit" id="plus">
-                    <img src="/assets/img/ajout.png" alt="plus">
-                </button>
-            </div>
-        </form>
-    </div>
-    <ul>
-        {% for piece in foyer.pieces %}
-            <li>
-                <a href="#" class="open-modal" data-piece="{{ piece.nom }}">{{ piece.nom }}</a>
-            </li>
-        {% else %}
-            <li>Aucune tâche trouvée</li>
-        {% endfor %}
-    </ul>
-</section>
+	<section>
+		<div class="container">
+			<h2>Ménage</h2>
+		</div>
 
-<!-- Modal structure -->
-<div class="overlay" onclick="closeModal()"></div>
+		<!-- Formulaire de création de pièce -->
+		<div id="formu">
+			<form action="/piece" method="POST">
+				<div class="formulaire">
+					<input type="text" id="nom" name="nom" placeholder="Nom de la pièce" required>
+					<button type="submit" id="plus">
+						<img src="/assets/img/ajout.png" alt="plus">
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<!-- Formulaire de modification des membres -->
+		{% if wanted %}
+			<div id="modification-form">
+				<form method="post" action="/pieceupdate/{{ wanted._id }}">
+					<div>
+						<label for="name">Nom</label>
+						<input id="name" type="text" name="nom" value="{{ wanted.nom }}" required>
+						{% if error %}
+							<!-- Affichage des erreurs éventuelles -->
+							<p>{{ error }}</p>
+						{% endif %}
+					</div>
+					<div>
+						<button type="submit">✅</button>
+					</div>
+				</form>
+			</div>
+		{% endif %}
+		<ul>
+			{% for piece in foyer.pieces %}
+				<li>
+					<a href="#" class="open-modal" data-piece="{{ piece.nom }}" data-piece-id="{{ piece._id }}">{{ piece.nom }}</a>
+					<a id="suppri" href="/piecedelete/{{ piece._id }}">🗑️</a>
+					<a id="upd" href="/pieceupdate/{{ piece._id }}">🖊️</a>
+				</li>
+			{% else %}
+				<li>Aucune tâche trouvée</li>
+			{% endfor %}
+		</ul>
+	</section>
+
+	<!-- Structure du modal -->
+	<div class="overlay" onclick="closeModal()"></div>
 <div class="modal">
     <div class="modal-content">
         <span class="modal-close" onclick="closeModal()">&times;</span>
-        <h3 id="modal-title"></h3>
+        <div class="container">
+            <h3 id="modal-title"></h3>
+        </div>
+
+        <div id="formul">
+            <form id="menageForm" method="POST">
+                <div class="formulaire">
+                    <input type="text" id="menage-nom" name="nom" placeholder="Nom de la tâche" required>
+                    <select id="recurrence-type" name="recurrence" required>
+                        <option value="daily">Journalier</option>
+                        <option value="weekly">Hebdomadaire</option>
+                        <option value="monthly">Mensuel</option>
+                        <option value="seasonally">Saisonnier</option>
+                    </select>
+                    <button type="submit" id="plus-mod">
+                        <img src="/assets/img/ajout.png" alt="plus">
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div id="recu">
+            <input class="btn" type="button" name="daily" value="Journalier">
+            <input class="btn" type="button" name="weekly" value="Hebdomadaire">
+            <input class="btn" type="button" name="monthly" value="Mensuel">
+            <input class="btn" type="button" name="seasonally" value="Saisonnier">
+        </div>
+        <ul id="menage-list">
+            {% for piece in foyer.pieces %}
+                <h3>{{ piece.name }}</h3>
+                <ul>
+                    {% for menage in piece.menages %}
+                        <li>
+                            
+                           <a id="suppri" href="/piece/{{ piece._id }}/menage/{{ menage._id }}">🗑️</a> 
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </ul>
     </div>
 </div>
 
-<script src="/assets/js/menage.js"></script>
+	<script src="/assets/js/menage.js"></script>
 {% endblock %}

@@ -42,7 +42,7 @@ const foyerSchema = new mongoose.Schema({
     tdl: 
         [{ type: mongoose.Schema.Types.ObjectId, ref: 'tdl' }],
     recettes: 
-        [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recettes' }],
+        [{ type: mongoose.Schema.Types.ObjectId, ref: 'recettes' }],
     pieces: 
         [{ type: mongoose.Schema.Types.ObjectId, ref: 'pieces' }],
 

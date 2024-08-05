@@ -7,6 +7,16 @@ h2{
     margin: 20px;
     padding: 10px;
 }
+h3{
+    width: 133px;
+    text-align: center;
+    background-color: rgb(120 184 90);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+
+}
 
 body{
     background-color: #baeba2;
@@ -19,6 +29,7 @@ body{
     position: relative;
     display: flex;
     justify-content: center;
+    margin: 15px
 }
 #formu {
     display: flex;
@@ -64,14 +75,19 @@ button{
     transform: translate(-50%, -50%);
     background: #fff;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 15px;
     z-index: 1001;
+    height: 449px;
+    width: 600px;
+    color: rgb(120 184 90);
+    
 }
 
 .modal-open {
     display: block;
     height: 449px;
     width: 600px;
+    
 
 }
 
@@ -81,11 +97,55 @@ button{
 
 .modal-close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: -5px;
+    right: 3px;
     font-size: 24px;
     cursor: pointer;
 }
 h3{
+    text-align: center;
+}
+#plus-mod{
+    right: -11px;
+    position: relative;
+    top: 1px;
+}
+
+#recu{
+    display: flex;
+    justify-content: space-around;
+}
+.btn{
+    background-color: rgb(120 184 90);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    margin-bottom: 45px;
+}
+
+#menage-nom{
+    background-color: rgb(120 184 90);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 5px;
+}
+#menage-nom::placeholder{
+    color: white;
+    text-align: center;
+}
+#recurrence-type{
+    color: white;
+    background-color: rgb(120 184 90);
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}
+
+#menage-list{
     text-align: center;
 }
