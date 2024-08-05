@@ -3,13 +3,13 @@
     src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
   }
 
-header{
+/* header{
     display: flex;
     background-color: rgb(120 184 90);
     justify-content: space-between;
     margin: 0;
     height: 110%;
-}
+} */
 li a {
     color:#fffefe;
     text-decoration: none;
@@ -92,6 +92,7 @@ margin-top: 10%;
     padding: 10px;
     color: #fffefe;
     border-radius: 17px;
+    box-shadow: -9px 8px 13px #738869;
 }
 h2{
     margin-bottom: 50px;

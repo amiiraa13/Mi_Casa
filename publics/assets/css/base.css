@@ -1,14 +1,15 @@
-body{
+/* body{
     background-color: #baeba2;
-}
+} */
 
-header{
+/* header{
     display: flex;
     background-color: rgb(120 184 90);
     justify-content: space-between;
     margin: 0;
     height: 110%;
-}
+    
+} */
 li a {
     color:#fffefe;
     text-decoration: none;

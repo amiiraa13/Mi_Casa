@@ -23,6 +23,7 @@ li{
 }
 body{
     background-color: #baeba2;
+    
 }
 #interfaces{
     display: flex;
@@ -34,18 +35,20 @@ body{
     background-color: rgb(120 184 90);
     border-radius: 100%;
     padding: 90px;
-   
+    box-shadow: -9px 8px 13px #738869;
     
 }
 #interOne{
     background-color: rgb(120 184 90);
     border-radius: 100%;
     padding: 90px;
+    box-shadow: -9px 8px 13px #738869;
 }
 #interTwo{
     background-color: rgb(120 184 90);
     border-radius: 100%;
     padding: 90px;
+    box-shadow: -9px 8px 13px #738869;
 }
 
 @media (max-width: 910px) {

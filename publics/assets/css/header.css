@@ -4,6 +4,7 @@ header{
     justify-content: space-between;
     margin: 0;
     height: 110%;
+    box-shadow: 1px 5px 4px #738869;
 }
 li a {
     color:#fffefe;
@@ -30,7 +31,7 @@ li{
     }
  }
 
- @media ( min-width:370px) {
+ @media ( max-width:421px) {
     
 
     li a {
