@@ -5,6 +5,7 @@ const foyerModel = require('../models/foyerModel'); // Importation du modèle 'f
 const pieceModel = require('../models/pieceModel'); // Importation du modèle 'pieceModel'
 const menageModel = require('../models/menageModel'); // Importation du modèle 'menageModel'
 const authGuard = require('../middleware/authGuard'); // Importation du middleware d'authentification
+const membreModel = require('../models/membreModel');
 
 // Route GET pour afficher les informations du foyer et des ménages
 pieceRouter.get('/menage', authGuard, async (req, res) => {
@@ -12,15 +13,21 @@ pieceRouter.get('/menage', authGuard, async (req, res) => {
         // Recherche du foyer par ID avec les pièces et les ménages associés
         const foyerFinded = await foyerModel.findById(req.session.foyer._id)
             .populate({
+
                 path: 'pieces',
                 populate: {
                     path: 'menages',
                     model: 'menages'
                 }
-            });
+            })
+            .populate({
+                path: "membres"
+            })
+            
         // Rendu du template 'menage.twig' avec les données du foyer trouvé
         res.render('pages/menage.twig', {
             foyer: foyerFinded,
+            membres: foyerFinded.membres
         });
     } catch (error) {
         // En cas d'erreur, renvoie une réponse avec le statut 500 et le message d'erreur
@@ -69,6 +76,11 @@ pieceRouter.post('/piece/:pieceid/menage', authGuard, async (req, res) => {
             { _id: req.params.pieceid },
             { $push: { menages: newMenage._id } }
         );
+        await membreModel.updateOne(
+            { _id: req.body.membres },
+            { $push: { tache: newMenage._id } }
+        );
+
         // Redirection vers la page '/menage'
         res.redirect('/menage');
     } catch (error) {
@@ -168,7 +180,14 @@ pieceRouter.post('/pieceupdate/:pieceid', authGuard, async (req, res) => {
 pieceRouter.get('/piece/:pieceid/menages', authGuard, async (req, res) => {
     try {
         // Recherche de la pièce par ID avec les ménages associés
-        const piece = await pieceModel.findById(req.params.pieceid).populate('menages');
+        const piece = await pieceModel.findById(req.params.pieceid).populate({
+            path: "menages",
+            populate: {
+                path: 'membres',
+                
+            }
+        });
+        
         // Renvoie des ménages sous forme de JSON
         res.json({ menages: piece.menages });
     } catch (error) {
@@ -178,11 +197,11 @@ pieceRouter.get('/piece/:pieceid/menages', authGuard, async (req, res) => {
 });
 
 // Route DELETE pour supprimer un ménage d'une pièce spécifique
-pieceRouter.delete('/piece/:pieceid/menage/:menageid', authGuard, async (req, res) => {
+pieceRouter.get('/deletepiece/:pieceid/menagedelete/:menageid', authGuard, async (req, res) => {
     try {
         // Suppression du ménage par ID
         await menageModel.deleteOne({ _id: req.params.menageid });
-        
+        console.log('blaa');
         // Mise à jour de la pièce pour retirer l'ID du ménage supprimé
         await pieceModel.updateOne(
             { _id: req.params.pieceid },

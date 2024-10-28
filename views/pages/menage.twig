@@ -40,13 +40,18 @@
 				</form>
 			</div>
 		{% endif %}
-		<ul>
+		
+		<ul id="piecesContainer">
 			{% for piece in foyer.pieces %}
-				<li>
-					<a href="#" class="open-modal" data-piece="{{ piece.nom }}" data-piece-id="{{ piece._id }}">{{ piece.nom }}</a>
-					<a id="suppri" href="/piecedelete/{{ piece._id }}">🗑️</a>
+			
+				<li id="pieces">
+					<a id="lien" href="#" class="open-modal" data-piece="{{ piece.nom }}" data-piece-id="{{ piece._id }}">{{ piece.nom }}</a>
+					<div id="modContainer">
+					<a id="class" href="/piecedelete/{{ piece._id }}">🗑️</a>
 					<a id="upd" href="/pieceupdate/{{ piece._id }}">🖊️</a>
+					</div>
 				</li>
+				
 			{% else %}
 				<li>Aucune tâche trouvée</li>
 			{% endfor %}
@@ -72,6 +77,12 @@
                         <option value="monthly">Mensuel</option>
                         <option value="seasonally">Saisonnier</option>
                     </select>
+					<select name="membres" id="membres">
+						<option value="">selectionner un membre</option>
+						{% for membre in membres %}
+							<option value= {{membre.id}}>{{membre.name}}</option>
+						{% endfor %}
+					</select>
                     <button type="submit" id="plus-mod">
                         <img src="/assets/img/ajout.png" alt="plus">
                     </button>
@@ -84,15 +95,17 @@
             <input class="btn" type="button" name="monthly" value="Mensuel">
             <input class="btn" type="button" name="seasonally" value="Saisonnier">
         </div>
+
         <ul id="menage-list">
             {% for piece in foyer.pieces %}
                 <h3>{{ piece.name }}</h3>
                 <ul>
                     {% for menage in piece.menages %}
                         <li>
-                            
-                           <a id="suppri" href="/piece/{{ piece._id }}/menage/{{ menage._id }}">🗑️</a> 
+                           
+                           
                         </li>
+						
                     {% endfor %}
                 </ul>
             {% endfor %}

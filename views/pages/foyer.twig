@@ -27,7 +27,11 @@
                 </div>
                 <div id="modif">
                   <label for="role">Rôle</label>
-                  <input id="role" type="text" name="role" value="{{ wanted.role }}">
+                  
+                  <select id="role" name="role" value="{{ wanted.role }}" required>
+                        <option value="gerant">Gérant</option>
+                        <option value="membre">Membre</option>
+                    </select>
                   {% if error %}
                     <!-- Affichage des erreurs éventuelles -->
                     <p>{{ error }}</p>
@@ -42,6 +46,15 @@
               <div id="mem">
                 <p>{{ membre.name }}</p>
                 <p>Rôle : {{ membre.role }}</p>
+                <p>Taches : </p>
+               
+                <ul>
+                  {% for task in membre.tache %}
+                    <li>
+                    {{task.nom}}
+                    </li>
+                  {% endfor %}
+                </ul>
                 <div id="boutn">
                   <!-- Lien pour mettre à jour le membre -->
                   <a id="upd" href="/membreupdate/{{ membre.id }}">🖊️</a>
@@ -82,7 +95,10 @@
       </div>
       <div>
         <label for="role">Rôle</label>
-        <input id="role" type="text" name="role">
+        <select id="role" name="role" required>
+                        <option value="gerant">Gérant</option>
+                        <option value="membre">Membre</option>
+                    </select>
         {% if error %}
           <!-- Affichage des erreurs éventuelles -->
           <p>{{ error }}</p>

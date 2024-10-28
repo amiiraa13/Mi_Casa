@@ -149,3 +149,35 @@ h3{
 #menage-list{
     text-align: center;
 }
+
+#pieces{
+    background-color: #fff;
+    margin-bottom: 20px;
+   border-radius: 15px;
+   display: flex;
+   flex-direction: column;
+    
+}
+#lien{
+    color:#79b85a;
+}
+
+#piecesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+}
+#modContainer{
+    display: flex;
+    justify-content: center;
+}
+#membres{
+    color: white;
+    background-color: rgb(120 184 90);
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}

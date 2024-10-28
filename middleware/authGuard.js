@@ -30,3 +30,10 @@ const authGuard = async (req, res, next) => {
 
 // Exportation du middleware pour l'utiliser dans d'autres parties de l'application
 module.exports = authGuard;
+
+
+
+
+
+
+

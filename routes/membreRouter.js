@@ -7,9 +7,17 @@ const foyerModel = require("../models/foyerModel"); // Modèle de données pour 
 // Route pour afficher la page du foyer avec les membres
 membreRouter.get("/foyer", authGuard, async (req, res) => {
     try {
-        const foyerFinded = await foyerModel.findById(req.session.foyer._id).populate('membres'); // Recherche le foyer et peuple les membres
+        const foyerFinded = await foyerModel.findById(req.session.foyer._id).populate({
+            path:'membres',
+            populate:{
+                path:'tache'
+            }
+        }); // Recherche le foyer et peuple les membres
+        
         res.render("pages/foyer.twig", {
-            foyer: foyerFinded // Rend la vue "foyer.twig" avec les données du foyer
+            foyer: foyerFinded ,// Rend la vue "foyer.twig" avec les données du foyer
+            membres: foyerFinded.membres,
+
         });
     } catch (error) {
         res.status(500).send(error.message); // Renvoie une réponse d'erreur en cas d'échec
@@ -46,7 +54,7 @@ membreRouter.get("/membredelete/:membreid", authGuard, async (req, res) => {
         );
         res.redirect("/foyer"); // Redirige vers la page du foyer
     } catch (error) {
-        console.log(error.message);
+        
         res.render("pages/foyer.twig", {
             errorMessage: "Un probleme est survenu pendant la suppression", // Affiche un message d'erreur
             foyer: await foyerModel.findById(req.session.foyer._id).populate("membres"), // Recherche le foyer et peuple les membres

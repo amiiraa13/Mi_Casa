@@ -26,6 +26,8 @@ const membreSchema = new mongoose.Schema({
             message: "le role doit contenir des caracteres valides"
         }
     },
+    tache: 
+    [{ type: mongoose.Schema.Types.ObjectId, ref: 'menages' }],
     
     
 })

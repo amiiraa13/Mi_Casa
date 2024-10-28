@@ -17,7 +17,9 @@ foyerRouter.post('/signin', async(req,res)=>{
         await newFoyer.save() // Sauvegarde le nouveau foyer dans la base de données
         res.redirect('/login') // Redirige vers la page de connexion
     } catch (error) {
-        res.json(error.message) // Renvoie une réponse JSON avec le message d'erreur
+        res.render("pages/signin.twig", {
+            error: error.message // Rend la vue "signin.twig" avec un message d'erreur
+        })
     }
 })
 
@@ -49,13 +51,7 @@ foyerRouter.post('/login',  async (req,res)=>{
 
 // Route pour afficher le tableau de bord
 foyerRouter.get('/dashboard', authGuard, async(req,res)=>{
-    let query = {} // Initialisation de la requête vide
-
-    if (req.query.query) { // Si une requête de recherche est présente
-        query[req.query.searchType] = { $regex: new RegExp(req.query.query, 'i') }; // Ajoute un filtre de recherche
-    }
-    console.log(query);
-    const foyerFinded = await foyerModel.findById(req.session.foyer._id) // Recherche le foyer par ID
+   
     res.render('pages/dashboard.twig',{
         foyer: req.session.foyer // Rend la vue "dashboard.twig" avec les données du foyer
     })
@@ -70,8 +66,13 @@ foyerRouter.get('/foyer', authGuard, async (req, res) => {
     try {
         const foyerFinded = await foyerModel.findById(req.session.foyer._id).populate({
             path: "membres",
-            match: query
+            match: query,
+            populate:{
+                path: "tache",
+            }
+
         }); // Recherche le foyer par ID et récupère les membres correspondant au filtre
+        console.log(foyerFinded.membres[0].tache);
         res.render('pages/foyer.twig', {
             foyer: req.session.foyer, // Rend la vue "foyer.twig" avec les données du foyer et ses membres
             membres: foyerFinded.membres
@@ -105,3 +106,8 @@ foyerRouter.get("/foyerdelete/:foyerid", authGuard, async (req, res) => {
 
 // Export du routeur
 module.exports = foyerRouter
+
+
+
+
+

@@ -15,6 +15,9 @@ const menageSchema = new mongoose.Schema({
         enum: ["daily", "weekly", "monthly", "seasonally"],
         required: [true, "Le type de récurrence est requis"],
     },
+    membres:{
+         type: mongoose.Schema.Types.ObjectId, ref: 'membres' ,
+    }
 })
 
 const menageModel = mongoose.model('menages', menageSchema)
