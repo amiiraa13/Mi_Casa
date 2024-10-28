@@ -72,7 +72,6 @@ foyerRouter.get('/foyer', authGuard, async (req, res) => {
             }
 
         }); // Recherche le foyer par ID et récupère les membres correspondant au filtre
-        console.log(foyerFinded.membres[0].tache);
         res.render('pages/foyer.twig', {
             foyer: req.session.foyer, // Rend la vue "foyer.twig" avec les données du foyer et ses membres
             membres: foyerFinded.membres
